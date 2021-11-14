@@ -1,0 +1,21 @@
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": false,
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": true,
+  "importOrderParserPlugins": ["jsx", "typescript", "classProperties"],
+  "importOrder": [
+    "./polyfill",
+    "^shared/(.*)$",
+    "^features/(.*)$",
+    "^pages/(.*)$",
+    "^api/(.*)$",
+    "^[./]"
+  ],
+  "sortModules": true,
+  "importOrderSeparation": true
+}
