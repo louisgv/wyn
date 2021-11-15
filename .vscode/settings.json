@@ -5,6 +5,7 @@
   "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
   "editor.formatOnSave": true,
   "files.exclude": {
+    "**/.db": true,
     "**/.git": true,
     "**/.expo": true,
     "**/.next": true,

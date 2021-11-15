@@ -2,19 +2,14 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@wyn/*": [
-        "features/*"
-      ]
+      "@wyn/*": ["features/*"]
     },
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -26,11 +21,6 @@
     "importsNotUsedAsValues": "error",
     "target": "es5"
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

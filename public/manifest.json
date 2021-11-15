@@ -1,0 +1,15 @@
+{
+  "name": "WYN",
+  "short_name": "wyn",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "512x512"
+    }
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}
