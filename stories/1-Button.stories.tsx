@@ -1,23 +1,10 @@
-import { action } from "@storybook/addon-actions"
-import { storiesOf } from "@storybook/react-native"
-import { ButtonContainer } from "@wyn/interactive/button"
-import { Text } from "moti"
+import type { Meta, Story } from "@storybook/react-native"
+import { ButtonText } from "@wyn/interactive/button"
 import React from "react"
 
 export default {
   title: "Button",
-  parameters: {
-    actions: {
-      handles: ["mouseover", "click .btn"]
-    }
-  }
-}
+  component: ButtonText
+} as Meta
 
-export const text = () => (
-  <ButtonContainer onPress={action("Hello")}>
-    <Text>Hello world</Text>
-  </ButtonContainer>
-)
-
-// On-Device Register
-storiesOf("Button", module).add("Text", text)
+export const ButtonTest: Story = (args) => <ButtonText {...args} />

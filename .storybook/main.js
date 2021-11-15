@@ -13,7 +13,14 @@ module.exports = {
     "@storybook/addon-storysource",
     "@storybook/addon-ondevice-notes",
     "@storybook/addon-ondevice-controls",
-    "@storybook/addon-ondevice-actions"
+    "@storybook/addon-ondevice-actions",
+    {
+      name: "@storybook/addon-react-native-web",
+      options: {
+        modulesToTranspile: ["react-native-reanimated"],
+        babelPlugins: ["react-native-reanimated/plugin"]
+      }
+    }
   ],
   webpackFinal: async (config) => {
     config.resolve.plugins = [

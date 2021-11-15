@@ -3,6 +3,7 @@ import type { FC } from "react"
 
 const theme = {
   colors: {
+    text: "white",
     primary: "purple",
     disabled: "grey"
   }
