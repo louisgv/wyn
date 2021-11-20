@@ -41,14 +41,14 @@ function RootApp({ Component, pageProps }: AppProps) {
         openGraph={{
           images: [
             {
-              url: "https://wyn.vercel.app/logo.svg",
-              width: 450,
-              height: 450,
-              alt: "Og Image Alt",
-              type: "image/svg+xml"
+              url: "https://wyn.vercel.app/seo-1200x628.png",
+              width: 1200,
+              height: 628,
+              alt: "Wyn",
+              type: "image/png"
             }
           ],
-          site_name: "WYN"
+          site_name: "📝thᚹnk"
         }}
       />
       <Head>
