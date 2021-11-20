@@ -31,6 +31,7 @@ export default class RootDocument extends Document {
           <style>{`
             html, body, #__next {
               height: 100%;
+              margin: 0;
             }
             #__next {
               margin: 0 auto;

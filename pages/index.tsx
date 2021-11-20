@@ -15,26 +15,70 @@ const Home: NextPage = () => {
   const [tempNote, setTempNote] = useState("")
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "#333",
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+        overflow: "auto",
+        padding: "0 32px"
+      }}>
       <input
         type="text"
+        value={tempNote}
+        style={{
+          marginTop: 160,
+          width: "100%",
+          maxWidth: 320
+        }}
+        placeholder="Type your thought, and press enter"
         onChange={(event) => {
           setTempNote(event.target.value)
         }}
+        onKeyDown={(event) => {
+          // if enter, add note
+          if (event.key === "Enter") {
+            db.put({
+              _id: uuidv4(),
+              text: tempNote
+            })
+            setTempNote("")
+          }
+        }}
       />
-      <button
-        onClick={() => {
-          db.put({
-            _id: uuidv4(),
-            text: tempNote
-          })
-          setTempNote("")
+      <ul
+        style={{
+          width: "100%",
+          padding: 0,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center"
         }}>
-        Add
-      </button>
-      <ul>
         {rows.map((row) => {
-          return <li key={row.id}>{row.doc?.text}</li>
+          return (
+            <li
+              key={row.id}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                width: "100%"
+              }}>
+              <input
+                style={{
+                  width: "100%"
+                }}
+                value={row.doc?.text}
+              />
+              <button
+                onClick={() => {
+                  db.remove(row.doc!)
+                }}>
+                X
+              </button>
+            </li>
+          )
         })}
       </ul>
     </div>
