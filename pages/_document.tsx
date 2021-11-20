@@ -1,3 +1,4 @@
+import { Constant } from "core/constant"
 import Document, {
   DocumentContext,
   Head,
@@ -5,10 +6,7 @@ import Document, {
   Main,
   NextScript
 } from "next/document"
-const APP_NAME = "WYN"
-const APP_DESCRIPTION = "A place to think joyfully"
-
-export default class extends Document {
+export default class RootDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     return await Document.getInitialProps(ctx)
   }
@@ -17,14 +15,14 @@ export default class extends Document {
     return (
       <Html lang="en" dir="ltr">
         <Head>
-          <meta name="application-name" content={APP_NAME} />
+          <meta name="application-name" content={Constant.NAME} />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta
             name="apple-mobile-web-app-status-bar-style"
             content="default"
           />
-          <meta name="apple-mobile-web-app-title" content={APP_NAME} />
-          <meta name="description" content={APP_DESCRIPTION} />
+          <meta name="apple-mobile-web-app-title" content={Constant.NAME} />
+          <meta name="description" content={Constant.DESCRIPTION} />
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="theme-color" content="#FFFFFF" />
