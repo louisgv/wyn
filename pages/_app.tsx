@@ -41,9 +41,9 @@ function RootApp({ Component, pageProps }: AppProps) {
         openGraph={{
           images: [
             {
-              url: "https://wyn.vercel.app/seo-1200x628.png",
+              url: "https://wyn.vercel.app/seo-1200x630.png",
               width: 1200,
-              height: 628,
+              height: 630,
               alt: "Wyn",
               type: "image/png"
             }
