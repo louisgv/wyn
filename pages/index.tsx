@@ -1,11 +1,16 @@
 import type { NextPage } from "next"
 import { useState } from "react"
+import useSWR from "swr"
 import { useAllDocs, usePouch } from "use-pouchdb"
 import { v4 as uuidv4 } from "uuid"
+import type { Human } from "./api/human"
 
 type Entry = {
   text: string
 }
+
+// @ts-ignore
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 const Home: NextPage = () => {
   const db = usePouch<Entry>()
@@ -13,6 +18,11 @@ const Home: NextPage = () => {
     include_docs: true
   })
   const [tempNote, setTempNote] = useState("")
+
+  const { data: humanData, mutate } = useSWR<Human>(
+    `/api/human?name=${tempNote}`,
+    fetcher
+  )
 
   return (
     <div
@@ -25,6 +35,15 @@ const Home: NextPage = () => {
         overflow: "auto",
         padding: "0 32px"
       }}>
+      <h1
+        style={{
+          color: "#fff"
+        }}>
+        {/* if found human, show their data, else show not human */}
+        {humanData
+          ? `FOUND HUMAN: ${humanData.name}, AGE: ${humanData.age}, DESC: ${humanData.description}`
+          : "NO HUMAN FOUND FOR THIS DATA"}
+      </h1>
       <input
         type="text"
         value={tempNote}
@@ -40,6 +59,17 @@ const Home: NextPage = () => {
         onKeyDown={(event) => {
           // if enter, add note
           if (event.key === "Enter") {
+            if (event.ctrlKey) {
+              fetch(`/api/human?name=${tempNote}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                  description: "HELLO WORLD"
+                })
+              }).then(() => mutate())
+
+              return
+            }
+
             db.put({
               _id: uuidv4(),
               text: tempNote
