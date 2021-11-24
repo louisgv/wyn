@@ -3,7 +3,7 @@
  * Returns information about a person
  */
 
-import type { NextApiRequest, NextApiResponse } from "next"
+import type { NextApiRequest, NextApiResponse, NextConfig } from "next"
 
 export type Human = {
   name: string
@@ -19,7 +19,10 @@ const humanData: Record<string, Human> = {
 }
 
 // REST API request: req, res: response
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const { name } = req.query
 
   if (typeof name !== "string") {
@@ -29,7 +32,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const normalizedName = name.toLowerCase()
 
   if (req.method === "PATCH") {
-    const { description } = JSON.parse(req.body)
+    const { description } = req.body
     humanData[normalizedName].description = description
     return res.status(200).end()
   }
@@ -42,4 +45,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   // Get data from your database
   res.status(200).json(human)
+}
+
+export const config = {
+  api: {
+    bodyParser: false
+  }
 }
